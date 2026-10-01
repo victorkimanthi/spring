@@ -8,4 +8,4 @@ import java.util.List;
 
 public interface ICompanyService {
     List<CompanyDto> getAllCompanies();
-}
+ }
