@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
         configurer.addPathPrefix("/api",controller -> true);
     }
 
-    @Override
+   /* @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins("http://localhost:5173")
@@ -26,5 +26,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .exposedHeaders("*")
                 .allowCredentials(true).maxAge(3600);
-    }
+    }*/
 }
