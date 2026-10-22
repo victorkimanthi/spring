@@ -1,5 +1,6 @@
 package com.eazybytes.jobportal.security;
 
+import com.eazybytes.jobportal.security.filter.JwtTokenValidatorFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -56,6 +58,7 @@ public class JobPortalSecurityConfig {
                     securedPaths.forEach(path -> requests.requestMatchers(path).authenticated());
                     requests.anyRequest().denyAll();
                 })
+                .addFilterBefore(new JwtTokenValidatorFilter(publicPaths), BasicAuthenticationFilter.class)
                 .formLogin(flc -> flc.disable())
                 .httpBasic(withDefaults())
                 .build();
