@@ -32,6 +32,7 @@ public class CaffeineCacheConfig {
     @Value("${cache.roles.max-size:50}")
     private int rolesCacheMaxSize;
 
+
     @Bean
     public CacheManager caffeineCacheManager() {
 
